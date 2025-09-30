@@ -14,3 +14,4 @@ func main() {
 
 //program print numbers from 0 to 9 and end with deadlock
 //main goroutine doesnt know about end of sending message
+//for right execute 'gorotine-sender' need to close channel
