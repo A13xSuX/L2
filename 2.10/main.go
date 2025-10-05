@@ -35,7 +35,7 @@ func getColumn(line string, column int) string {
 		return "" //колонки нет
 	}
 
-	return columns[column-1] // Не забудьте про индексацию (колонки с 1, а слайсы с 0)
+	return columns[column-1]
 }
 
 func parseNumber(s string) float64 {
@@ -121,9 +121,9 @@ func main() {
 	flag.BoolVar(&config.Check, "c", false, "check")
 	// flag.BoolVar(&config.human, "h", false, "humanview")
 
-	flag.Parse() //Анализирует аргументы командной строки (os.Args) и заполняет все переменные, которые были зарегистрированы через flag.StringVar, flag.BoolVar и т.д.
+	flag.Parse()
 
-	if len(flag.Args()) > 0 { //./program data.txt                    # filename = "data.txt"
+	if len(flag.Args()) > 0 {
 		filename = flag.Args()[0] //./program -numeric data.txt          # numeric=true, filename="data.txt"
 	} //./program -file=data.txt -numeric    # filename="data.txt", numeric=true
 
