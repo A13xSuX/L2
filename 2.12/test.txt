@@ -1,0 +1,10 @@
+start line 1
+start line 2
+PATTERN MATCH HERE
+after match 1
+after match 2
+end line 1
+another PATTERN in middle
+more text after
+final line
+EOF
