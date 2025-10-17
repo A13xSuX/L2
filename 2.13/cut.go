@@ -24,12 +24,12 @@ type Config struct {
 
 func parseFields(fieldsStr string) ([]int, error) {
 	result := make([]int, 0)
-	if fieldsStr == "" { // проверка на пустую строку
+	if fieldsStr == "" { // check empty fields
 		return result, errors.New("Fields is empty")
 	}
-	split := strings.Split(fieldsStr, ",") // разделение по запятым
+	split := strings.Split(fieldsStr, ",")
 	for _, field := range split {
-		if strings.Contains(field, "-") {
+		if strings.Contains(field, "-") { //range
 			manyNum := strings.Split(field, "-")
 			if len(manyNum) != 2 {
 				return result, errors.New("Fields is invalid, len!= 2")
@@ -48,7 +48,7 @@ func parseFields(fieldsStr string) ([]int, error) {
 			for i := start; i <= end; i++ {
 				result = append(result, i)
 			}
-		} else { //обработка одиночных чисел
+		} else { //solo element
 			num, err := strconv.Atoi(field)
 			if err != nil {
 				return result, err
@@ -70,7 +70,7 @@ func processLine(line string, fields []int, delimiter string, separated bool) st
 	for _, fieldNum := range fields { //fieldNum from user begin from 1
 		if fieldNum-1 < len(column) && fieldNum > 0 {
 			resultFields = append(resultFields, column[fieldNum-1])
-		} //игнорируем поля за границами
+		} //ignore fields for out
 	}
 	return strings.Join(resultFields, delimiter)
 }
@@ -83,7 +83,7 @@ func main() {
 	flag.BoolVar(&config.separated, "s", false, "Separated by newline")
 	flag.Parse()
 
-	scanner := bufio.NewScanner(os.Stdin) //читаем с stdin
+	scanner := bufio.NewScanner(os.Stdin)
 	fields, err := parseFields(config.fields)
 	if err != nil {
 		fmt.Println(err)
