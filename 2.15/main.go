@@ -1,3 +1,4 @@
+// script launch:cat test_commands.txt | grep main.go
 package main
 
 import (
